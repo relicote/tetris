@@ -94,7 +94,7 @@ function drawTetromino(){
     const row = currentTetromino.row;
     const col  = currentTetromino.col;
 
-    for(let r = 0; i< shape.length; r++){
+    for(let r = 0; r< shape.length; r++){
         for(let c=0; c < shape[r].length; c++){
             if(shape[r][c]){
                 const block = document.createElement('div');
