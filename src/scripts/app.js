@@ -147,7 +147,14 @@ function canTetrominoMove(rowOffset, colOffset){
 
 function lockTetromino(){
     for(let i = 0; i < currentTetromino.shape.length; i++){
-        
+        for(let j = 0; j < currentTetromino.shape[i].length; j++){
+            if(currentTetromino.shape[i][j] !== 0){
+                let row = currentTetromino.row +i;
+                let col = currentTetromino.col +j;
+
+                board[row][col]=currentTetromino.color;
+            }
+        }
     }
 }
 
