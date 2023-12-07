@@ -38,5 +38,19 @@ const tetrominoes = [
             [2,2,2],
         ],
         color: '#7925dd'
+    },
+    {
+        shape: [
+            [0,3,3],
+            [3,3,0]
+        ],
+        color: 'orange'
+    },
+    {
+        shape: [
+            [4,4,0],
+            [0,4,4]
+        ],
+        color: 'red'
     }
 ]
