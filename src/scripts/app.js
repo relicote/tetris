@@ -127,15 +127,15 @@ function eraseTetromino(){
     }
 }
 
-function canTetrominoMove(rowOffset, colOffset){
-    for(let i = 0; i< currentTetromino.shape.length; i++){
-        for(let j = 0; j< currentTetromino.shape[i].length; j++){
-            if(currentTetromino.shape[i][j !== 0]){
-                let row = currentTetromino.row + i + rowOffset;
-                let col = currentTetromino.col + j + colOffset;
-
-                if(row >= BOARD_HEIGHT || col < 0 || col >= BOARD_WIDTH || (row >= 0 && board[row[col]] !== 0)) {
-                    return false;
+function canTetrominoMove(rowOffset, colOffset) {
+    for (let i = 0; i < currentTetromino.shape.length; i++) {
+      for (let j = 0; j < currentTetromino.shape[i].length; j++) {
+        if (currentTetromino.shape[i][j] !== 0) {
+          let row = currentTetromino.row + i + rowOffset;
+          let col = currentTetromino.col + j + colOffset;
+  
+          if (row >= BOARD_HEIGHT || col < 0 || col >= BOARD_WIDTH || (row >= 0 && board[row][col] !== 0)) {
+            return false;
                 }
             }
         }
@@ -149,8 +149,8 @@ function lockTetromino(){
     for(let i = 0; i < currentTetromino.shape.length; i++){
         for(let j = 0; j < currentTetromino.shape[i].length; j++){
             if(currentTetromino.shape[i][j] !== 0){
-                let row = currentTetromino.row +i;
-                let col = currentTetromino.col +j;
+                let row = currentTetromino.row + i;
+                let col = currentTetromino.col + j;
 
                 board[row][col]=currentTetromino.color;
             }
@@ -196,12 +196,17 @@ function moveTetromino(direction){
         drawTetromino();
         }
     } else {
-        // baixo - down
-        eraseTetromino();
-        row++;
-        currentTetromino.col = col;
-        currentTetromino.row = row;
-        drawTetromino();
+
+        if(canTetrominoMove(1,0)){
+            // baixo - down
+            eraseTetromino();
+            row++;
+            currentTetromino.col = col;
+            currentTetromino.row = row;
+            drawTetromino();
+        } else{
+            lockTetromino();
+        }
     }
 }
 
