@@ -298,6 +298,24 @@ document.body.addEventListener("click", () =>{
     drop.muted = false;
 })
 
+function dropTetromino(){
+    let row = currentTetromino.row;
+    let col = currentTetromino.col;
+
+    drop.muted = false;
+    drop.play()
+
+    while(canTetrominoMove(1,0)){
+        eraseTetromino();
+        row++
+        currentTetromino.col = col;
+        currentTetromino.row = row;
+        drawTetromino();
+    }
+
+    lockTetromino();
+}
+
 document.addEventListener('keydown', handleKeyPress);
 
 function handleKeyPress(event){
@@ -317,6 +335,7 @@ function handleKeyPress(event){
         break;
         case 32: //space bar
         //drop
+        dropTetromino();
         break;
     }
 }
