@@ -70,5 +70,20 @@ const tetrominoes = [
     {
         shape: [[7,7,7,7]],
         color: '#00b5ff'
-    }
+    },
 ];
+
+function randomTetromino(){
+    const index = Math.floor(Math.random()) * tetrominoes.length;
+
+    const tetromino = tetrominoes[index];
+    return{
+        shape : tetromino.shape,
+        color: tetromino.color,
+        row: 0,
+        col: Math.floor(Math.random() * (BOARD_WIDTH - tetromino.shape[0].length +1))
+    };
+}
+
+let currentTetromino = randomTetromino();
+let currentGhostTetromino;
