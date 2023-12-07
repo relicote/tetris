@@ -133,11 +133,23 @@ function canTetrominoMove(rowOffset, colOffset){
             if(currentTetromino.shape[i][j !== 0]){
                 let row = currentTetromino.row + i + rowOffset;
                 let col = currentTetromino.col + j + colOffset;
+
+                if(row >= BOARD_HEIGHT || col < 0 || col >= BOARD_WIDTH || (row >= 0 && board[row[col]] !== 0)) {
+                    return false;
+                }
             }
         }
     }
+
+    return true;
 }
 
+
+function lockTetromino(){
+    for(let i = 0; i < currentTetromino.shape.length; i++){
+        
+    }
+}
 
 function rotateTetromino(){
     rotatedShape = [];
@@ -161,17 +173,21 @@ function moveTetromino(direction){
     let col = currentTetromino.col;
     
     if(direction === 'left'){
-        eraseTetromino();
-        col-=1;
-        currentTetromino.col = col;
-        currentTetromino.row = row;
-        drawTetromino();
+        if(canTetrominoMove(0, -1)){
+            eraseTetromino();
+            col-=1;
+            currentTetromino.col = col;
+            currentTetromino.row = row;
+            drawTetromino();
+        }     
     }else if(direction === 'right'){
+        if(canTetrominoMove(0, 1)){
         eraseTetromino();
         col +=1;
         currentTetromino.col = col;
         currentTetromino.row = row;
         drawTetromino();
+        }
     } else {
         // baixo - down
         eraseTetromino();
