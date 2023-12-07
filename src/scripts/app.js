@@ -87,3 +87,24 @@ function randomTetromino(){
 
 let currentTetromino = randomTetromino();
 let currentGhostTetromino;
+
+function drawTetromino(){
+    const shape = currentTetromino.shape;
+    const color = currentTetromino.color;
+    const row = currentTetromino.row;
+    const col  = currentTetromino.col;
+
+    for(let r = 0; i< shape.length; r++){
+        for(let c=0; c < shape[r].length; c++){
+            if(shape[r][c]){
+                const block = document.createElement('div');
+                block.classList.add('block');
+                block.style.backgroundColor = color;
+                block.style.top = (row+r) *24 + 'px';
+                block.style.left = (col+c) *24 + 'px';
+                block.setAttribute('id', `block-${row + r}-${col +c}`)
+                document.getElementById('game_board').appendChild(block);
+            }
+        }
+    }
+}
