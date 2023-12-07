@@ -315,6 +315,41 @@ function drawGhostTetromino(){
     }
 }
 
+function eraseGhostTetromino(){
+    const ghost = document.querySelectorAll('.ghost');
+    for(let i = 0; i < ghost.length; i++){
+        ghost[i].remove();
+    }
+}
+
+function canGhostTetromino(rowOffset, colOffset){
+        for(let i = 0; i < currentGhostTetromino.shape.length; i++){
+            for(let j = 0; j < currentTetromino.shape[i].length; j++){
+                if(currentTetromino.shape[i][j] !== 0){
+                    let row = currentGhostTetromino.row + i + rowOffset;
+                    let col = currentGhostTetromino.col + j + colOffset;
+
+                    if(row >= BOARD_HEIGHT || col < 0 ||col >= BOARD_WIDTH || (row >=0 && board[row][col] !==0)){
+                        return false;
+                    }
+            }
+        }
+    }
+    return true;
+}
+
+function moveGhostTetromino(){
+    eraseGhostTetromino();
+    
+    currentGhostTetromino = {...currentTetromino};
+
+    while(canGhostTetromino(1,0)){
+        currentGhostTetromino.row ++;
+    }
+
+    drawGhostTetromino();
+}
+
 document.body.addEventListener("click", () =>{
     bgm.play();
     bgm.muted = false;
