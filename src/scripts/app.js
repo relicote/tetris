@@ -177,6 +177,25 @@ function lockTetromino(){
     currentTetromino = randomTetromino();
 }
 
+function clearRows(){
+    let rowsCleared = 0;
+
+    for(let y = BOARD_HEIGHT -1; y >= 0; y--){
+        let rowFilled = true;
+
+        for(let x=0; x < BOARD_WIDTH; x++){
+            if (board[y][x] == 0){
+                rowFilled = false;
+                break;
+            }
+        }
+
+        if(rowFilled){
+            rowsCleared++
+        }
+    }
+}
+
 function rotateTetromino(){
     rotatedShape = [];
     for(let i = 0; i < currentTetromino.shape[0].length; i++){
