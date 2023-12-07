@@ -292,6 +292,12 @@ function moveTetromino(direction){
 drawTetromino();
 setInterval(moveTetromino, 500);
 
+document.body.addEventListener("click", () =>{
+    bgm.play();
+    bgm.muted = false;
+    drop.muted = false;
+})
+
 document.addEventListener('keydown', handleKeyPress);
 
 function handleKeyPress(event){
