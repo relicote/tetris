@@ -74,7 +74,7 @@ const tetrominoes = [
 ];
 
 function randomTetromino(){
-    const index = Math.floor(Math.random()) * tetrominoes.length;
+    const index = Math.floor(Math.random()* tetrominoes.length);
 
     const tetromino = tetrominoes[index];
     return{
@@ -127,6 +127,17 @@ function eraseTetromino(){
     }
 }
 
+function rotateTetromino(){
+    rotatedShape = [];
+    for(let i = 0; i < currentTetromino.shape[0].length; i++){
+        let row = [];
+        for(let j = currentTetromino.shape.length -1; j >=0; j--){
+            row.push(currentTetromino.shape[j][i]);
+        }
+        rotatedShape.push[row];
+    }
+}
+
 
 function moveTetromino(direction){
     let row = currentTetromino.row;
@@ -157,19 +168,26 @@ function moveTetromino(direction){
 drawTetromino();
 setInterval(moveTetromino, 500);
 
+document.addEventListener('keydown', handleKeyPress);
+
 function handleKeyPress(event){
     switch(event.keyCode){
         case 37 : //left arrow
         moveTetromino('left');
         break;
         case 39 : //right arrow
-        moveTetromino('left');
+        moveTetromino('right');
         break;
         case 40 : //down arrow
-        moveTetromino('left');
+        moveTetromino('down');
         break;
         case 38 : //up arrow
-        moveTetromino('left');
+        //rotate
+        rotateTetromino();
+        break;
+        case 32: //space bar
+        //drop
         break;
     }
 }
+
