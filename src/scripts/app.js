@@ -134,7 +134,7 @@ function rotateTetromino(){
         for(let j = currentTetromino.shape.length -1; j >=0; j--){
             row.push(currentTetromino.shape[j][i]);
         }
-        rotatedShape.push[row];
+        rotatedShape.push(row);
     }
 
 
