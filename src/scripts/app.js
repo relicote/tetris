@@ -155,3 +155,21 @@ function moveTetromino(direction){
 }
 
 drawTetromino();
+setInterval(moveTetromino, 500);
+
+function handleKeyPress(event){
+    switch(event.keyCode){
+        case 37 : //left arrow
+        moveTetromino('left');
+        break;
+        case 39 : //right arrow
+        moveTetromino('left');
+        break;
+        case 40 : //down arrow
+        moveTetromino('left');
+        break;
+        case 38 : //up arrow
+        moveTetromino('left');
+        break;
+    }
+}
