@@ -144,6 +144,22 @@ function canTetrominoMove(rowOffset, colOffset) {
     return true;
 }
 
+function canTetrominoRotate(){
+    for(let i =0; i < rotatedShape.length; i++){
+        for(let j=0; j < rotatedShape[i].length; j++){
+            if(rotatedShape[i][j] !== 0){
+                let row = currentTetromino.row +i;
+                let col = currentTetromino.col +j;
+
+                if(row >= BOARD_HEIGHT || col <0 || col >= BOARD_WIDTH || (row >=0 && board[row][col]!==0)){
+                    return false;
+                }
+            }
+        }
+    }
+    return true;
+}
+
 
 function lockTetromino(){
     for(let i = 0; i < currentTetromino.shape.length; i++){
@@ -168,10 +184,14 @@ function rotateTetromino(){
         rotatedShape.push(row);
     }
 
+    if(canTetrominoRotate()){
+        eraseTetromino();
+        currentTetromino.shape = rotatedShape;
+        drawTetromino();
+    }
 
-    eraseTetromino();
-    currentTetromino.shape = rotatedShape;
-    drawTetromino();
+
+    
 }
 
 
