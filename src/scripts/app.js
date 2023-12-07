@@ -108,3 +108,21 @@ function drawTetromino(){
         }
     }
 }
+
+// apagando tetrmino do quadro
+
+function eraseTetromino(){
+    for(let i = 0; i < currentTetromino.shape.length; i++){
+        for(let j = 0; j < currentTetromino.shape[i].length; j++){
+            if(currentTetromino.shape[i][j] !== 0){
+                let row = currentTetromino.row + i;
+                let col = currentTetromino.col + j;
+                let block = document.getElementById(`block-${row}-${col}`);
+
+                if(block){
+                    document.getElementById('game_board').removeChild(block)
+                }
+            }
+        }
+    }
+}
