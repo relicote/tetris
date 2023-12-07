@@ -120,9 +120,37 @@ function eraseTetromino(){
                 let block = document.getElementById(`block-${row}-${col}`);
 
                 if(block){
-                    document.getElementById('game_board').removeChild(block)
+                    document.getElementById('game_board').removeChild(block);
                 }
             }
         }
+    }
+}
+
+drawTetromino();
+
+function moveTetromino(direction){
+    let row = currentTetromino.row;
+    let col = currentTetromino.col;
+    
+    if(direction === 'left'){
+        eraseTetromino();
+        col-=1;
+        currentTetromino.col = col;
+        currentTetromino.row = row;
+        drawTetromino();
+    }else if(direction === 'right'){
+        eraseTetromino();
+        col +=1;
+        currentTetromino.col = col;
+        currentTetromino.row = row;
+        drawTetromino();
+    } else {
+        // baixo - down
+        eraseTetromino();
+        row++;
+        currentTetromino.col = col;
+        currentTetromino.row = row;
+        drawTetromino();
     }
 }
