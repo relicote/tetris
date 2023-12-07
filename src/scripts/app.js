@@ -14,8 +14,8 @@ bgm.muted = true;
 breakSound.setAttribute('src', './assets/break.mp3');
 bgm.muted = true;
 
-breakSound.setAttribute('src', './assets/drop.mp3');
-bgm.muted = true;
+drop.setAttribute('src', './assets/drop.mp3');
+drop.muted = true;
 
 for(let row = 0; row < BOARD_HEIGHT; row++){
     board[row] = [];
@@ -247,6 +247,8 @@ function rotateTetromino(){
         eraseTetromino();
         currentTetromino.shape = rotatedShape;
         drawTetromino();
+
+        moveGhostTetromino();
     }
 
 
