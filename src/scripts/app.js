@@ -287,6 +287,8 @@ function moveTetromino(direction){
             lockTetromino();
         }
     }
+
+    moveGhostTetromino();
 }
 
 drawTetromino();
@@ -294,26 +296,27 @@ setInterval(moveTetromino, 500);
 
 // DRAW GHOST
 
-function drawGhostTetromino(){
-    const shape = currentTetromino.shape;
-    const color = 'rgba(255,255,255,0.5)';
-    const row = currentTetromino.row;
-    const col = currentTetromino.col;
-
-    for(let r = 0; r < shape.length; r++){
-        for(let c = 0; c < shape[r].length; c++){
-            if(shape[r][c]){
-                const block = document.createElement('div');
-                block.classList.add('ghost');
-                block.style.backgroundColor = color;
-                block.style.top = (row + r) * 24 + 'px';
-                block.style.left = (col + c) * 24 + 'px';
-                block.setAttribute('id', `ghost-${row + r} - ${col + c}`);
-                document.getElementById('game_board').appendChild(block);
-            }
+// Draw Ghost tetromino
+function drawGhostTetromino() {
+    const shape = currentGhostTetromino.shape;
+    const color = "rgba(255,255,255,0.5)";
+    const row = currentGhostTetromino.row;
+    const col = currentGhostTetromino.col;
+  
+    for (let r = 0; r < shape.length; r++) {
+      for (let c = 0; c < shape[r].length; c++) {
+        if (shape[r][c]) {
+          const block = document.createElement("div");
+          block.classList.add("ghost");
+          block.style.backgroundColor = color;
+          block.style.top = (row + r) * 24 + "px";
+          block.style.left = (col + c) * 24 + "px";
+          block.setAttribute("id", `ghost-${row + r}-${col + c}`);
+          document.getElementById("game_board").appendChild(block);
         }
+      }
     }
-}
+  }
 
 function eraseGhostTetromino(){
     const ghost = document.querySelectorAll('.ghost');
@@ -344,7 +347,7 @@ function moveGhostTetromino(){
     currentGhostTetromino = {...currentTetromino};
 
     while(canGhostTetromino(1,0)){
-        currentGhostTetromino.row ++;
+        currentGhostTetromino.row++;
     }
 
     drawGhostTetromino();
