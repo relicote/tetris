@@ -127,7 +127,6 @@ function eraseTetromino(){
     }
 }
 
-drawTetromino();
 
 function moveTetromino(direction){
     let row = currentTetromino.row;
@@ -154,3 +153,5 @@ function moveTetromino(direction){
         drawTetromino();
     }
 }
+
+drawTetromino();
