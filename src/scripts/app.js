@@ -183,53 +183,55 @@ function lockTetromino(){
     currentTetromino = randomTetromino();
 }
 
-function clearRows(){
+function clearRows() {
     let rowsCleared = 0;
-
-    for(let y = BOARD_HEIGHT -1; y >= 0; y--){
-        let rowFilled = true;
-
-        for(let x=0; x < BOARD_WIDTH; x++){
-            if (board[y][x] == 0){
-                rowFilled = false;
-                break;
-            }
+  
+    // 아래에서부터 검사하면서 완전한 줄을 찾아서 지웁니다.
+    for (let y = BOARD_HEIGHT - 1; y >= 0; y--) {
+      let rowFilled = true;
+  
+      for (let x = 0; x < BOARD_WIDTH; x++) {
+        if (board[y][x] === 0) {
+          rowFilled = false;
+          break;
         }
-
-        if(rowFilled){
-            rowsCleared++
-
-            for(let yy = y; yy > 0; yy++){
-                for(let x = 0; x < BOARD_WIDTH; x++){
-                    board[yy][x] = board[yy-1];
-                }
-            }
-
-            for(let x = 0; x < BOARD_WIDTH; x++){
-                board[0][x] = 0;
-            }
-
-            document.getElementById('game_board').innerHTML = '';
-            for(let row = 0; row < BOARD_HEIGHT; row++){
-                for(let col = 0; col < BOARD_WIDTH; col++){
-                    if(board[row][col]){
-                        const block = document.createElement('div');
-                        block.classList.add('block');
-                        block.style.backgroundColor = board[row][col];
-                        block.style.top = row*24 + 'px';
-                        block.style.left = col*24 + 'px';
-                        block.setAttribute('id', `block-${row}-${col}`);
-                        document.getElementById('game_board').appendChild(block);
-                    }
-                }
-            }
+      }
+  
+      if (rowFilled) {
+        breakSound.muted = false;
+        breakSound.play();
+        rowsCleared++;
+  
+        for (let yy = y; yy > 0; yy--) {
+          for (let x = 0; x < BOARD_WIDTH; x++) {
+            board[yy][x] = board[yy - 1][x];
+          }
         }
-
-        //replay
-
+  
+        for (let x = 0; x < BOARD_WIDTH; x++) {
+          board[0][x] = 0;
+        }
+        document.getElementById("game_board").innerHTML = "";
+        for (let row = 0; row < BOARD_HEIGHT; row++) {
+          for (let col = 0; col < BOARD_WIDTH; col++) {
+            if (board[row][col]) {
+              const block = document.createElement("div");
+              block.classList.add("block");
+              block.style.backgroundColor = board[row][col];
+              block.style.top = row * 24 + "px";
+              block.style.left = col * 24 + "px";
+              block.setAttribute("id", `block-${row}-${col}`);
+              document.getElementById("game_board").appendChild(block);
+            }
+          }
+        }
+  
         y++;
+      }
     }
-}
+  
+    return rowsCleared;
+  }
 
 function rotateTetromino(){
     rotatedShape = [];
