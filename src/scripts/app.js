@@ -24,4 +24,19 @@ for(let row = 0; row < BOARD_HEIGHT; row++){
     }
 }
 
-
+const tetrominoes = [
+    {
+        shape: [
+            [1,1],
+            [1,1]
+        ],
+        color: '#ffd800'
+    },
+    {
+        shape: [
+            [0,2,0],
+            [2,2,2],
+        ],
+        color: '#7925dd'
+    }
+]
