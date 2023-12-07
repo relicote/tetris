@@ -136,6 +136,11 @@ function rotateTetromino(){
         }
         rotatedShape.push[row];
     }
+
+
+    eraseTetromino();
+    currentTetromino.shape = rotatedShape;
+    drawTetromino();
 }
 
 
