@@ -173,6 +173,12 @@ function lockTetromino(){
         }
     }
 
+    // clear row
+
+    let rowsCleared = clearRows();
+    if(rowsCleared>0){
+        //atualizar score
+    }
 
     currentTetromino = randomTetromino();
 }
@@ -192,7 +198,36 @@ function clearRows(){
 
         if(rowFilled){
             rowsCleared++
+
+            for(let yy = y; yy > 0; yy++){
+                for(let x = 0; x < BOARD_WIDTH; x++){
+                    board[yy][x] = board[yy-1];
+                }
+            }
+
+            for(let x = 0; x < BOARD_WIDTH; x++){
+                board[0][x] = 0;
+            }
+
+            document.getElementById('game_board').innerHTML = '';
+            for(let row = 0; row < BOARD_HEIGHT; row++){
+                for(let col = 0; col < BOARD_WIDTH; col++){
+                    if(board[row][col]){
+                        const block = document.createElement('div');
+                        block.classList.add('block');
+                        block.style.backgroundColor = board[row][col];
+                        block.style.top = row*24 + 'px';
+                        block.style.left = col*24 + 'px';
+                        block.setAttribute('id', `block-${row}-${col}`);
+                        document.getElementById('game_board').appendChild(block);
+                    }
+                }
+            }
         }
+
+        //replay
+
+        y++;
     }
 }
 
