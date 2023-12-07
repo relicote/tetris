@@ -172,6 +172,9 @@ function lockTetromino(){
             }
         }
     }
+
+
+    currentTetromino = randomTetromino();
 }
 
 function rotateTetromino(){
