@@ -127,6 +127,18 @@ function eraseTetromino(){
     }
 }
 
+function canTetrominoMove(rowOffset, colOffset){
+    for(let i = 0; i< currentTetromino.shape.length; i++){
+        for(let j = 0; j< currentTetromino.shape[i].length; j++){
+            if(currentTetromino.shape[i][j !== 0]){
+                let row = currentTetromino.row + i + rowOffset;
+                let col = currentTetromino.col + j + colOffset;
+            }
+        }
+    }
+}
+
+
 function rotateTetromino(){
     rotatedShape = [];
     for(let i = 0; i < currentTetromino.shape[0].length; i++){
